@@ -1,8 +1,10 @@
 import hashlib
 import hmac
+import json
 import logging
 import os
 import secrets
+import sys
 
 import requests
 
@@ -33,14 +35,14 @@ class SynapseClient:
 
     def create_user(self, username, display_name, email):
         logging.info("Creating user " + username)
-        url = f"{self.base_url}/_synapse/admin/v1/register"
-        nonce = requests.get(url).json()["nonce"]
+        url = f"{self.base_url}/_synapse/admin/v2/users/%40{username}%3A{self.domain}"
+        nonce = requests.get(f"{self.base_url}/_synapse/admin/v1/register").json()["nonce"]
         password = secrets.token_urlsafe(32)
         mac = generate_mac(
             nonce, username,password
         )
 
-        registration_res = requests.post(
+        registration_res = requests.put(
             url,
             json={
                 "nonce": nonce,
@@ -56,11 +58,12 @@ class SynapseClient:
                 "admin": False,
                 "mac": mac,
             },
+            headers=self.headers
         ).json()
 
         if (
-            "user_id" in registration_res and 
-            registration_res["user_id"] == f"@{username}:{self.domain}"
+            "name" in registration_res and 
+            registration_res["name"] == f"@{username}:{self.domain}"
         ):
              logging.info("User created " + password)
         elif "errcode" in registration_res and registration_res["errcode"] == "M_USER_IN_USE":
