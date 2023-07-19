@@ -70,6 +70,18 @@ class SynapseClient:
 
         return
     
+    def get_users(self):
+        url = f"{self.base_url}/_synapse/admin/v2/users"
+        response = requests.get(url, headers=self.headers)
+        response.raise_for_status()
+        return response.json()
+
+    def get_user(self, user_id):
+        url = f"{self.base_url}/_synapse/admin/v2/users/{user_id}"
+        response = requests.get(url, headers=self.headers)
+        response.raise_for_status()
+        return response.json()
+    
 def generate_mac(nonce, user, password, admin=False, user_type=None):
     mac = hmac.new(
         key=bytearray(os.environ["SYNAPSE_SECRET"].encode("utf8")),

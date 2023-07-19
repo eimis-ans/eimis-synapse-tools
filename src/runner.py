@@ -1,3 +1,4 @@
+import json
 import logging
 
 from csv_extract import read_file
@@ -15,3 +16,13 @@ def do_import_users(csv_file_path):
 
     for entry in entries:
         mx_client.create_user(entry["mxid"], entry["display_name"], entry["email"])
+
+def do_get_users():
+    client = SynapseClient()
+    users = client.get_users()
+    print(json.dumps(users, indent=2, sort_keys=True))
+
+def do_get_user(userId):
+    client = SynapseClient()
+    user = client.get_user(userId)
+    print(json.dumps(user, indent=2, sort_keys=True))
