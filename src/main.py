@@ -33,4 +33,12 @@ def import_users(csv_file):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+
+    # Fast fail if env var not set
+    synapse_url = os.environ["SYNAPSE_URL"]
+    synapse_secret = os.environ["SYNAPSE_SECRET"]
+    admin_username = os.environ["ADMIN_USERNAME"]
+    admin_password = os.environ["ADMIN_PASSWORD"]
+
     cli()

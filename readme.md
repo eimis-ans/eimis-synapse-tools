@@ -12,9 +12,12 @@ And a some configurations in an `.env` file
 
 ```env
 HOMESERVER_URL=https://matrix.eimis.beta.gouv.fr
+SYNAPSE_SECRET="secret"
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=secret
 ```
+
+Find SYNAPSE_SECRET in your homeserver configuration
 
 And will create the users on the homeserver.
 
