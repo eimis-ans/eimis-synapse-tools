@@ -1,5 +1,4 @@
 import os
-import sys
 
 import click
 from dotenv import load_dotenv
@@ -7,13 +6,13 @@ from dotenv import load_dotenv
 import __init__ as init
 from runner import do_get_user, do_get_users, do_import_users
 
+
 @click.group()
 def cli():
     """EIMIS scripts for batch matrix enrollment.
     
     Make sure .env file is present and filled"""
     pass
-
 
 @cli.command
 def version():
@@ -27,9 +26,17 @@ def version():
     required=True,
     help="Path to csv file containing users to be imported.")
 
-def import_users(csv_file):
+@click.option( "-d",
+    "--dry-run",
+    type=bool,
+    is_flag=True,
+    required=False,
+    default=False,
+    help="If set doesn't really import users.")
+
+def import_users(csv_file, dry_run):
     """Import users from csv file to Synapse"""
-    do_import_users(csv_file)
+    do_import_users(csv_file, dry_run)
 
 @cli.command
 def get_users():

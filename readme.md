@@ -29,6 +29,15 @@ pip install -r requirements.txt
 
 ## Usage
 
+See all commands:
+
+```bash
+python3 src/main.py --help
+python3 src/main.py import-users --help 
+```
+
+Main command:
+
 ```bash
 python3 src/main.py --dry-run --csv-file ./data/users.csv
 ```
