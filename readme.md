@@ -3,7 +3,7 @@
 This python project will take as input a csv file
 
 ```csv
-| display name            | mxid                        | email     |
+| display_name            | username                        | email     |
 | ----------------------- | --------------------------- | --------- |
 | John Doe - CHU de Nancy | @johndoe:eimis.beta.gouv.fr | jd@pm.com |
 ```
@@ -36,3 +36,9 @@ python3 src/main.py --dry-run --csv-file ./data/users.csv
 (remove `--dry-run` to actually create the users)
 
 Users can then go to their favorite client and click on `forgot password`.
+
+## Tests
+
+```bash
+python3 -m unittest discover src
+``````

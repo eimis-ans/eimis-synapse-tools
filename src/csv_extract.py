@@ -1,8 +1,9 @@
-import logging
 import csv
+import logging
 
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 
+CSV_COLUMN_NAMES = [ 'email', 'username', 'display_name' ]
 
 def read_file(csv_file):
     logging.info("Read file : " + csv_file + "...")
