@@ -1,12 +1,11 @@
 import hashlib
 import hmac
-import json
 import logging
 import os
 import secrets
-import sys
 
 import requests
+
 
 class SynapseClient:
     def __init__(self):
