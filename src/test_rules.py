@@ -17,6 +17,7 @@ class TestSum(unittest.TestCase):
 
     def test_check_email(self):
         self.assertTrue(check_email("test.lala@gml.com"))
+        self.assertTrue(check_email("test-user@jj.gh"))
         self.assertFalse(check_email("test.lala.com"))
 
     def test_check_username(self):
