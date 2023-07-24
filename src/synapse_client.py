@@ -76,7 +76,7 @@ class SynapseClient:
         url = f"{self.base_url}/_synapse/admin/v2/users"
         response = requests.get(url, headers=self.headers)
         response.raise_for_status()
-        return response.json()
+        return response.json()["users"]
 
     def get_user(self, user_id):
         url = f"{self.base_url}/_synapse/admin/v2/users/{user_id}"

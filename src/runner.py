@@ -18,11 +18,14 @@ def do_import_users(csv_file_path, dry_run):
 
     logging.info("Connect to Synapse...")
     mx_client = SynapseClient()
-    if not dry_run:
-        for entry in entries:
+    remove_existing_user(mx_client, entries)
+
+    for entry in entries:
+        if not dry_run:
+            logging.info(f"Create {entry['username']}")
             mx_client.create_user(entry["username"], entry["display_name"], entry["email"])
-    else:
-        logging.info("Dry run")
+        else:
+            logging.info(f"{entry['username']} dry-run : don't create")
     
     logging.info("The end, bye!")
 
@@ -35,3 +38,12 @@ def do_get_user(userId):
     client = SynapseClient()
     user = client.get_user(userId)
     print(json.dumps(user, indent=2, sort_keys=True))
+
+def remove_existing_user(client, entries):
+    users = client.get_users()
+    for entry in entries:
+        for user in users:
+            if user["name"].replace('@','').replace(':' + client.domain, '') == entry["username"]:
+                logging.info(f"{user['name']} Already exists")
+                entries.remove(entry)
+    return entries
