@@ -83,6 +83,12 @@ class SynapseClient:
         response = requests.get(url, headers=self.headers)
         response.raise_for_status()
         return response.json()
+
+    def deactivate_users(self, user_id):
+        url = f"{self.base_url}/_synapse/admin/v1/deactivate/{user_id}"
+        response = requests.post(url, headers=self.headers)
+        response.raise_for_status()
+        logging.info("User deactivated")
     
 def generate_mac(nonce, user, password, admin=False, user_type=None):
     mac = hmac.new(

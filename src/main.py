@@ -4,7 +4,7 @@ import click
 from dotenv import load_dotenv
 
 import __init__ as init
-from runner import do_get_user, do_get_users, do_import_users
+from runner import do_deactivate_user, do_get_user, do_get_users, do_import_users
 
 
 @click.group()
@@ -52,6 +52,17 @@ def get_users():
 def get_user(user_id):
     """Get a user detail"""
     do_get_user(user_id)
+
+@cli.command
+@click.option( "-u",
+    "--user-id",
+    type=str,
+    required=True,
+    help="User id")
+def deactivate_user(user_id):
+    """⚠️ Deactivate a user - https://github.com/matrix-org/synapse/blob/develop/docs/admin_api/user_admin_api.md#deactivate-account"""
+    if click.confirm(f"Deactivate {user_id} Do you want to continue?", abort=True):
+        do_deactivate_user(user_id)
 
 if __name__ == "__main__":
     load_dotenv()
