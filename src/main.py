@@ -4,7 +4,8 @@ import click
 from dotenv import load_dotenv
 
 import __init__ as init
-from runner import do_deactivate_user, do_get_user, do_get_users, do_import_users
+from cmd_import_users import do_import_users
+from cmd_simple_commands import do_deactivate_user, do_get_user, do_get_users
 
 
 @click.group()

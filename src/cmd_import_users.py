@@ -1,4 +1,3 @@
-import json
 import logging
 
 from csv_extract import read_file
@@ -28,20 +27,6 @@ def do_import_users(csv_file_path, dry_run):
             logging.info(f"{entry['username']} dry-run : don't create")
     
     logging.info("The end, bye!")
-
-def do_get_users():
-    client = SynapseClient()
-    users = client.get_users()
-    print(json.dumps(users, indent=2, sort_keys=True))
-
-def do_deactivate_user(userId):
-    client = SynapseClient()
-    client.deactivate_users(userId)
-
-def do_get_user(userId):
-    client = SynapseClient()
-    user = client.get_user(userId)
-    print(json.dumps(user, indent=2, sort_keys=True))
 
 def remove_existing_user(client, entries):
     users = client.get_users()
