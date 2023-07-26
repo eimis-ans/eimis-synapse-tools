@@ -11,7 +11,7 @@ from cmd_discovery_room import do_discovery_room
 
 @click.group()
 def cli():
-    """EIMIS scripts for batch matrix enrollment.
+    """EIMIS scripts & tools for Matrix (Synapse)
     
     Make sure .env file is present and filled"""
     pass
@@ -56,7 +56,10 @@ def import_users(csv_file, dry_run):
     help="If set doesn't really import users.")
 
 def setup_discoveryroom(remote_url, dry_run):
-    """Setup dummy user and discovery room 🪩"""
+    """Setup discovery room 🪩\n
+    - create a dummy user\n
+    - make all HS users join the discovery room\n
+    - make the dummy user join the remote discovery room"""
     do_discovery_room(remote_url, dry_run)
 
 @cli.command
