@@ -6,11 +6,12 @@ from dotenv import load_dotenv
 import __init__ as init
 from cmd_import_users import do_import_users
 from cmd_simple_commands import do_deactivate_user, do_get_user, do_get_users
+from cmd_discovery_room import do_discovery_room
 
 
 @click.group()
 def cli():
-    """EIMIS scripts for batch matrix enrollment.
+    """EIMIS scripts & tools for Matrix (Synapse)
     
     Make sure .env file is present and filled"""
     pass
@@ -38,6 +39,28 @@ def version():
 def import_users(csv_file, dry_run):
     """Import users from csv file to Synapse"""
     do_import_users(csv_file, dry_run)
+
+@cli.command
+@click.option( "-r",
+    "--remote-url",
+    type=str,
+    required=False,
+    help="Url of the remote homeserver")
+
+@click.option( "-d",
+    "--dry-run",
+    type=bool,
+    is_flag=True,
+    required=False,
+    default=False,
+    help="If set doesn't really import users.")
+
+def setup_discoveryroom(remote_url, dry_run):
+    """Setup discovery room 🪩\n
+    - create a dummy user\n
+    - make all HS users join the discovery room\n
+    - make the dummy user join the remote discovery room"""
+    do_discovery_room(remote_url, dry_run)
 
 @cli.command
 def get_users():
