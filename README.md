@@ -95,13 +95,17 @@ docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools -r matrix.develop.eimi
 
 ## Lint
 
-Python linting is done with flake8
+**Python lint** with [flake8](https://flake8.pycqa.org).
 
 ```bash
 poetry run flake8 --count --show-source --statistics
 ```
 
+**Static type check** with [mypy](http://mypy-lang.org/).
 
+```bash
+poetry run mypy . --no-namespace-packages
+```
 
 ## Tests
 
