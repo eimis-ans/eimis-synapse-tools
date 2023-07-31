@@ -1,6 +1,6 @@
 import unittest
 
-from src.rules import all_unique, check_email, check_username
+from src.eimis_synapse_tools.rules import all_unique, check_email, check_username
 
 class TestSum(unittest.TestCase):
 

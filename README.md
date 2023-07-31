@@ -29,7 +29,7 @@ And will create the users on the homeserver.
 ## Install
 
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ pip install -r requirements.txt
 See all commands:
 
 ```bash
-python3 src/main.py --help
+poetry run eimis-synapse-tools --help
 ```
 
 ### Import users
@@ -55,7 +55,7 @@ This python project will take as input a csv file
 Then the command:
 
 ```bash
-python3 src/main.py import-users --dry-run --csv-file ./data/users.csv
+poetry run eimis-synapse-tools import-users --dry-run --csv-file ./data/users.csv
 ```
 
 (remove `--dry-run` to actually create the users)
@@ -65,12 +65,12 @@ Users can then go to their favorite client and click on `forgot password`.
 ### Discovery room
 
 ```bash
-python3 src/main.py setup-discoveryroom --help
-python3 src/main.py setup-discoveryroom  -r matrix.develop.eimis.incubateur.net 
+poetry run eimis-synapse-tools setup-discoveryroom --help
+poetry run eimis-synapse-tools setup-discoveryroom  -r matrix.develop.eimis.incubateur.net 
 ``````
 
 ## Tests
 
 ```bash
-python3 -m unittest discover src
+poetry run python -m unittest discover tests
 ``````

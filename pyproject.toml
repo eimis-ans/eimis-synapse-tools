@@ -5,7 +5,6 @@ description = "EIMIS tools for Synapse homeserver"
 authors = ["Adrien Touzouli <contact@ad2ien.dev>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "src"}, {include = "tests"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -16,7 +15,7 @@ matrix-client = "^0.4.0"
 
 [tool.semantic_release]
 version_variable = [
-    "src/my_app/__init__.py:__version__",
+    "src/eimis_synapse_tools/__init__.py:__version__",
     "pyproject.toml:version"
 ]
 branch = "main"
@@ -24,3 +23,6 @@ branch = "main"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+eimis-synapse-tools = "eimis_synapse_tools.main:cli"

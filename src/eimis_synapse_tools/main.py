@@ -3,10 +3,11 @@ import os
 import click
 from dotenv import load_dotenv
 
-import __init__ as init
-from src.cmd_import_users import do_import_users
-from src.cmd_simple_commands import do_deactivate_user, do_get_user, do_get_users
-from src.cmd_discovery_room import do_discovery_room
+import eimis_synapse_tools.__init__ as init
+from eimis_synapse_tools.cmd_discovery_room import do_discovery_room
+from eimis_synapse_tools.cmd_import_users import do_import_users
+from eimis_synapse_tools.cmd_simple_commands import (do_deactivate_user, do_get_user,
+                                             do_get_users)
 
 
 @click.group()
@@ -14,7 +15,12 @@ def cli():
     """EIMIS scripts & tools for Matrix (Synapse)
     
     Make sure .env file is present and filled"""
-    pass
+    load_dotenv()
+    # Fast fail if env var not set
+    synapse_url = os.environ["SYNAPSE_URL"]
+    synapse_secret = os.environ["SYNAPSE_SECRET"]
+    admin_username = os.environ["ADMIN_USERNAME"]
+    admin_password = os.environ["ADMIN_PASSWORD"]
 
 @cli.command
 def version():
@@ -89,12 +95,4 @@ def deactivate_user(user_id):
         do_deactivate_user(user_id)
 
 if __name__ == "__main__":
-    load_dotenv()
-
-    # Fast fail if env var not set
-    synapse_url = os.environ["SYNAPSE_URL"]
-    synapse_secret = os.environ["SYNAPSE_SECRET"]
-    admin_username = os.environ["ADMIN_USERNAME"]
-    admin_password = os.environ["ADMIN_PASSWORD"]
-
     cli()

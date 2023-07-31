@@ -1,5 +1,5 @@
 import json
-from src.synapse_client import SynapseClient
+from eimis_synapse_tools.synapse_client import SynapseClient
 
 
 def do_get_users():

@@ -1,8 +1,8 @@
 import logging
 
-from src.csv_extract import read_file
-from src.rules import check_duplicates, check_entries
-from src.synapse_client import SynapseClient
+from eimis_synapse_tools.csv_extract import read_file
+from eimis_synapse_tools.rules import check_duplicates, check_entries
+from eimis_synapse_tools.synapse_client import SynapseClient
 
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 

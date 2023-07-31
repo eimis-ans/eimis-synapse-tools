@@ -1,7 +1,7 @@
 import logging
 import secrets
 
-from synapse_client import SynapseClient
+from eimis_synapse_tools.synapse_client import SynapseClient
 
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 
