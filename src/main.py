@@ -4,9 +4,9 @@ import click
 from dotenv import load_dotenv
 
 import __init__ as init
-from cmd_import_users import do_import_users
-from cmd_simple_commands import do_deactivate_user, do_get_user, do_get_users
-from cmd_discovery_room import do_discovery_room
+from src.cmd_import_users import do_import_users
+from src.cmd_simple_commands import do_deactivate_user, do_get_user, do_get_users
+from src.cmd_discovery_room import do_discovery_room
 
 
 @click.group()

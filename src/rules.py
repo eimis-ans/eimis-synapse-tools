@@ -1,6 +1,6 @@
 import re
 
-from csv_extract import CSV_COLUMN_NAMES
+from src.csv_extract import CSV_COLUMN_NAMES
 
 email_regex = re.compile(r"([A-Za-z0-9-_.])*@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+")
 username_regex = re.compile(r"^[a-zA-Z0-9-_.]+$")

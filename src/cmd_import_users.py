@@ -1,8 +1,8 @@
 import logging
 
-from csv_extract import read_file
-from rules import check_duplicates, check_entries
-from synapse_client import SynapseClient
+from src.csv_extract import read_file
+from src.rules import check_duplicates, check_entries
+from src.synapse_client import SynapseClient
 
 logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 

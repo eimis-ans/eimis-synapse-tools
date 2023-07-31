@@ -1,5 +1,5 @@
 import json
-from synapse_client import SynapseClient
+from src.synapse_client import SynapseClient
 
 
 def do_get_users():
