@@ -2,7 +2,7 @@ import unittest
 
 from src.eimis_synapse_tools.rules import all_unique, check_email, check_username
 
-class TestSum(unittest.TestCase):
+class TestRules(unittest.TestCase):
 
     def test_all_unique(self):
         entries = [{'email': 'a', 'username': 'b', 'phone': 'c'}, {'email': 'd', 'username': 'e', 'phone': 'f'}]
