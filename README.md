@@ -32,6 +32,12 @@ And will create the users on the homeserver.
 poetry install
 ```
 
+Build docker image
+
+```bash
+docker build -t eimis-synapse-tools .
+```
+
 ## Usage
 
 ### Help
@@ -40,6 +46,12 @@ See all commands:
 
 ```bash
 poetry run eimis-synapse-tools --help
+```
+
+Or with docker image
+
+```bash
+docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools --help
 ```
 
 ### Import users
@@ -58,6 +70,12 @@ Then the command:
 poetry run eimis-synapse-tools import-users --dry-run --csv-file ./data/users.csv
 ```
 
+Or with docker image
+
+```bash
+docker run -v ./.env:/.env -v ./data/users.csv:/data/users.csv eimis-ans/eimis-synapse-tools --dry-run --csv-file /data/users.csv
+```
+
 (remove `--dry-run` to actually create the users)
 
 Users can then go to their favorite client and click on `forgot password`.
@@ -68,6 +86,12 @@ Users can then go to their favorite client and click on `forgot password`.
 poetry run eimis-synapse-tools setup-discoveryroom --help
 poetry run eimis-synapse-tools setup-discoveryroom  -r matrix.develop.eimis.incubateur.net 
 ``````
+
+Or with docker image
+
+```bash
+docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools -r matrix.develop.eimis.incubateur.net
+```
 
 ## Tests
 
