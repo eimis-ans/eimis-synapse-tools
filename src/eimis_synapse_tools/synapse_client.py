@@ -18,7 +18,7 @@ class SynapseClient:
         if not login:
             login = os.environ["ADMIN_USERNAME"]
         if not password:
-            password = os.environ["ADMIN_PASSWORD"] 
+            password = os.environ["ADMIN_PASSWORD"]
         self.base_url = os.environ["SYNAPSE_URL"]
         self.domain = self.base_url.replace(
             "https://", "").replace("http://", "")
@@ -75,8 +75,7 @@ class SynapseClient:
         ).json()
 
         if (
-            "name" in registration_res and
-            registration_res["name"] == f"@{username}:{self.domain}"
+            "name" in registration_res and registration_res["name"] == f"@{username}:{self.domain}"
         ):
             logging.info("User created with password : " + password)
         elif "errcode" in registration_res and registration_res["errcode"] == "M_USER_IN_USE":

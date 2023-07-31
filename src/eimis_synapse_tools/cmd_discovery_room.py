@@ -12,7 +12,8 @@ def do_discovery_room(remote_domain, dry_run):
     dummy_password = secrets.token_urlsafe(32)
     dummy_user = "dummy_user"
     if not dry_run:
-        client.create_user(dummy_user, "Dummy User", "dummy-mail@nowhere.fr", dummy_password)
+        client.create_user(dummy_user, "Dummy User",
+                           "dummy-mail@nowhere.fr", dummy_password)
 
     discovery_room_id = client.get_discovery_room_id()
     if not discovery_room_id and not dry_run:
@@ -39,14 +40,15 @@ def do_discovery_room(remote_domain, dry_run):
     # add user one by one
     for index, user_id in enumerate(users_missing_in_room):
         logging.info(
-            f"{len(users_missing_in_room)}/{index + 1} Adding user {user_id} in room : {discovery_room_id}"
+            f"{len(users_missing_in_room)}/{index + 1} ",
+            "Adding user {user_id} in room : {discovery_room_id}"
         )
         if not dry_run:
             client.add_user_in_room(
                 room_id=discovery_room_id, user_id=user_id
             )
 
-    dummy_client = SynapseClient( dummy_user, dummy_password)
+    dummy_client = SynapseClient(dummy_user, dummy_password)
     dummy_client.join_discoveryroom(remote_domain, dry_run)
 
 

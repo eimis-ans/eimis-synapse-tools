@@ -93,6 +93,16 @@ Or with docker image
 docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools -r matrix.develop.eimis.incubateur.net
 ```
 
+## Lint
+
+Python linting is done with flake8
+
+```bash
+poetry run flake8 --count --show-source --statistics
+```
+
+
+
 ## Tests
 
 ```bash

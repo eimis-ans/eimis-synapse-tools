@@ -1,6 +1,7 @@
 import unittest
 from src.eimis_synapse_tools.csv_extract import read_file
 
+
 class TestCsvExtract(unittest.TestCase):
     def test_read_file(self):
         expected_entries = [
