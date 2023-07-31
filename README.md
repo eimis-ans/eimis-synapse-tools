@@ -23,7 +23,8 @@ And will create the users on the homeserver.
 
 - `Python3` and `pip` installed
 - a Synapse server available with its Synapse secret
-- a user having admin rights
+- a user having admin rights on Synapse homeserver
+- [Poetry](https://python-poetry.org/) installed
 
 ## Install
 
