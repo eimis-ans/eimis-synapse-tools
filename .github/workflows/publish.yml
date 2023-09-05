@@ -17,7 +17,7 @@ jobs:
     uses: ./.github/workflows/test.yml
 
   build:
-    uses: ./.github/workflows/build.yml
+    uses: ./.github/workflows/docker-build.yml
 
   publish-docker-images:
     needs:
