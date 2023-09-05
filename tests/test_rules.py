@@ -1,17 +1,18 @@
 import unittest
 
-from rules import all_unique, check_email, check_username
+from src.eimis_synapse_tools.rules import all_unique, check_email, check_username
 
-class TestSum(unittest.TestCase):
+
+class TestRules(unittest.TestCase):
 
     def test_all_unique(self):
         entries = [{'email': 'a', 'username': 'b', 'phone': 'c'}, {'email': 'd', 'username': 'e', 'phone': 'f'}]
-        result, duplicated = all_unique(entries, 'email' )
+        result, duplicated = all_unique(entries, 'email')
         self.assertTrue(result, "All emails are unique")
         self.assertIsNone(duplicated, "No duplicated email")
 
         entries = [{'email': 'a', 'username': 'b', 'phone': 'c'}, {'email': 'a', 'username': 'e', 'phone': 'f'}]
-        result, duplicated = all_unique(entries, 'email' )
+        result, duplicated = all_unique(entries, 'email')
         self.assertFalse(result, "duplicate emails")
         self.assertEqual(duplicated, 'a', "duplicated email is a")
 
@@ -28,6 +29,7 @@ class TestSum(unittest.TestCase):
         self.assertTrue(check_username("user1-pouet"))
         self.assertTrue(check_username("user1_pouet"))
         self.assertTrue(check_username("user1_pou.et"))
+
 
 if __name__ == '__main__':
     unittest.main()

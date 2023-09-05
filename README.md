@@ -23,12 +23,19 @@ And will create the users on the homeserver.
 
 - `Python3` and `pip` installed
 - a Synapse server available with its Synapse secret
-- a user having admin rights
+- a user having admin rights on Synapse homeserver
+- [Poetry](https://python-poetry.org/) installed
 
 ## Install
 
 ```bash
-pip install -r requirements.txt
+poetry install
+```
+
+Build docker image
+
+```bash
+docker build -t eimis-synapse-tools .
 ```
 
 ## Usage
@@ -38,7 +45,13 @@ pip install -r requirements.txt
 See all commands:
 
 ```bash
-python3 src/main.py --help
+poetry run eimis-synapse-tools --help
+```
+
+Or with docker image
+
+```bash
+docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools --help
 ```
 
 ### Import users
@@ -54,7 +67,13 @@ This python project will take as input a csv file
 Then the command:
 
 ```bash
-python3 src/main.py import-users --dry-run --csv-file ./data/users.csv
+poetry run eimis-synapse-tools import-users --dry-run --csv-file ./data/users.csv
+```
+
+Or with docker image
+
+```bash
+docker run -v ./.env:/.env -v ./data/users.csv:/data/users.csv eimis-ans/eimis-synapse-tools --dry-run --csv-file /data/users.csv
 ```
 
 (remove `--dry-run` to actually create the users)
@@ -64,12 +83,32 @@ Users can then go to their favorite client and click on `forgot password`.
 ### Discovery room
 
 ```bash
-python3 src/main.py setup-discoveryroom --help
-python3 src/main.py setup-discoveryroom  -r matrix.develop.eimis.incubateur.net 
+poetry run eimis-synapse-tools setup-discoveryroom --help
+poetry run eimis-synapse-tools setup-discoveryroom  -r matrix.develop.eimis.incubateur.net 
 ``````
+
+Or with docker image
+
+```bash
+docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools -r matrix.develop.eimis.incubateur.net
+```
+
+## Lint
+
+**Python lint** with [flake8](https://flake8.pycqa.org).
+
+```bash
+poetry run flake8 --count --show-source --statistics
+```
+
+**Static type check** with [mypy](http://mypy-lang.org/).
+
+```bash
+poetry run mypy . --no-namespace-packages
+```
 
 ## Tests
 
 ```bash
-python3 -m unittest discover src
+poetry run python -m unittest discover tests
 ``````
