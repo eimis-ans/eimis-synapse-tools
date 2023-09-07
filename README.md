@@ -4,9 +4,16 @@
 ![python](https://img.shields.io/badge/language-Python-3776AB?logo=Python)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
+## Prerequisites
+
+- `Python3` and `pip` or docker installed
+- a Synapse server available with its Synapse secret
+- a user having admin rights on Synapse homeserver
+- [Poetry](https://python-poetry.org/) installed for development
+
 ## Configuration
 
-And a some configurations in an `.env` file
+Set the configurations in an `.env` file :
 
 ```env
 HOMESERVER_URL=https://matrix.example.com
@@ -15,16 +22,7 @@ ADMIN_USERNAME=
 ADMIN_PASSWORD=
 ```
 
-Find `SYNAPSE_SECRET` in your homeserver configuration
-
-And will create the users on the homeserver.
-
-## Prerequisites
-
-- `Python3` and `pip` installed
-- a Synapse server available with its Synapse secret
-- a user having admin rights on Synapse homeserver
-- [Poetry](https://python-poetry.org/) installed
+You can find `SYNAPSE_SECRET` in your homeserver configuration
 
 ## Install
 
@@ -51,12 +49,12 @@ poetry run eimis-synapse-tools --help
 Or with docker image
 
 ```bash
-docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools --help
+docker run eimisans/eimis-synapse-tools:nightly --help
 ```
 
 ### Import users
 
-This python project will take as input a csv file
+This tool will take as input a csv file:
 
 ```csv
 | display_name            | username                    | email     |
@@ -70,10 +68,10 @@ Then the command:
 poetry run eimis-synapse-tools import-users --dry-run --csv-file ./data/users.csv
 ```
 
-Or with docker image
+Or with docker
 
 ```bash
-docker run -v ./.env:/.env -v ./data/users.csv:/data/users.csv eimis-ans/eimis-synapse-tools --dry-run --csv-file /data/users.csv
+docker run -v ./.env:/.env -v ./data/users.csv:/data/users.csv eimisans/eimis-synapse-tools:nightly import-users --dry-run --csv-file /data/users.csv
 ```
 
 (remove `--dry-run` to actually create the users)
@@ -85,12 +83,12 @@ Users can then go to their favorite client and click on `forgot password`.
 ```bash
 poetry run eimis-synapse-tools setup-discoveryroom --help
 poetry run eimis-synapse-tools setup-discoveryroom  -r matrix.develop.eimis.incubateur.net 
-``````
+```
 
-Or with docker image
+Or with docker
 
 ```bash
-docker run -v ./.env:/.env  eimis-ans/eimis-synapse-tools -r matrix.develop.eimis.incubateur.net
+docker run  eimisans/eimis-synapse-tools:nightly setup-discoveryroom -r matrix.develop.eimis.incubateur.net
 ```
 
 ## Lint
@@ -111,4 +109,4 @@ poetry run mypy . --no-namespace-packages
 
 ```bash
 poetry run python -m unittest discover tests
-``````
+```
