@@ -81,8 +81,8 @@ jobs:
         if: steps.readme-change.outputs.any_changed == 'true'
         uses: peter-evans/dockerhub-description@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          username: ${{ vars.DOCKER_HUB_USERNAME }}
           short-description: Docker image for https://github.com/${{ github.repository }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: ${{ secrets.DOCKER_HUB_USERNAME }}/eimis-synapse-tools
+          repository: ${{ vars.DOCKER_HUB_USERNAME }}/eimis-synapse-tools
           readme-filepath: README.md
