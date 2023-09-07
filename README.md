@@ -49,7 +49,7 @@ poetry run eimis-synapse-tools --help
 Or with docker image
 
 ```bash
-docker run eimisans/eimis-synapse-tools:nightly --help
+docker run eimisans/eimis-synapse-tools:latest --help
 ```
 
 ### Import users
@@ -71,7 +71,7 @@ poetry run eimis-synapse-tools import-users --dry-run --csv-file ./data/users.cs
 Or with docker
 
 ```bash
-docker run -v ./.env:/.env -v ./data/users.csv:/data/users.csv eimisans/eimis-synapse-tools:nightly import-users --dry-run --csv-file /data/users.csv
+docker run -v ./.env:/.env -v ./data/users.csv:/data/users.csv eimisans/eimis-synapse-tools:latest import-users --dry-run --csv-file /data/users.csv
 ```
 
 (remove `--dry-run` to actually create the users)
@@ -88,7 +88,7 @@ poetry run eimis-synapse-tools setup-discoveryroom  -r matrix.develop.eimis.incu
 Or with docker
 
 ```bash
-docker run  eimisans/eimis-synapse-tools:nightly setup-discoveryroom -r matrix.develop.eimis.incubateur.net
+docker run  eimisans/eimis-synapse-tools:latest setup-discoveryroom -r matrix.develop.eimis.incubateur.net
 ```
 
 ## Lint
